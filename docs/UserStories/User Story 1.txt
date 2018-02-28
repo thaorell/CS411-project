@@ -1,0 +1,3 @@
+User Story 1
+
+As a user, I want to know if there are any restaurants on the way from a location to another so I can see if I can get any food on the way. 
