@@ -1,3 +1,0 @@
-User Story 3
-
-As a user, I want to find the restaurant visit last time on the trip since I forgot the location and name. 

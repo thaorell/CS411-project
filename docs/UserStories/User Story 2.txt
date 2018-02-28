@@ -1,3 +1,0 @@
-User Story 2
-
-As a user, I want to know if there are any recommandtion for restaurants in a place I am not familiar to. 
