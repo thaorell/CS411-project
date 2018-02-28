@@ -1,0 +1,1 @@
+When looking up for a new location, user will have an option to mark restaurants as favorites. In favorites page, they can view all favorites at once. We will make heart buttons, so user can control their favorites (add/ delete). User managements and preferences data, along with user favorites will be saved in the databse. 

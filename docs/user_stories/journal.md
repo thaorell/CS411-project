@@ -1,0 +1,4 @@
+As an authenticated user, they can click “Current Trip”, “Completed Trips” or “Future Trips” on the header, so they can modify their trips. 
+If they click “Completed trip”, they will see a list of trips (e.g. “2018 Northeast Extravaganza”). Clicking on any of them will show a map of visited restaurants with their locations and visit dates. 
+If they click “Current trip”, they will see a map with all restaurants they have visited. They can also view the locations and dates in which they planned for the visits and modify the dates as needed. The user also has the option to click “Mark as Completed” to complete their food journal and the current trip will be moved to “Completed Trip”. 
+If they click “Future trip”, they will be able to view the map of restaurants they wish to visit for a future trip. Here, they can enter the dates that they plan to visit.

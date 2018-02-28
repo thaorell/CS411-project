@@ -1,0 +1,2 @@
+As an authenticated user, they can look up a restaurant by entering location(town name or zip code), and/or restaurant names and cuisine. 
+The default home screen will display a search bar with a “Search” button in the middle of the page so they can create a new food journal. A list of restaurants, with reviews and ratings from Yelp and photos from Instagram or Google Image, will be displayed if “Search” is clicked. They will select restaurant(s) that they might want to visit or have visited and the date they visited/ plan to visit the restaurant. 
