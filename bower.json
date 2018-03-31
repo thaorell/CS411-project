@@ -1,0 +1,33 @@
+{
+    "name": "jimminews",
+    "description": "Jimmi News  with MongoDB, Express, AngularJS, and Node.js.",
+    "dependencies": {
+        "angular": "^1.6.4",
+        "angular-animate": "~1.5.0",
+        "angular-bootstrap": "~1.2.1",
+        "angular-messages": "~1.5.0",
+        "angular-resource": "~1.5.0",
+        "angular-ui-notification": "~0.2.0",
+        "angular-ui-router": "~0.2.18",
+        "ng-file-upload": "~12.1.0",
+        "angular-route": "^1.6.4",
+        "bootstrap": "^3.3.7",
+        "animate.css": "^3.5.2",
+        "font-awesome": "^4.7.0"
+    },
+    "resolutions": {
+        "angular": "1.6.4"
+    },
+    "overrides": {
+        "bootstrap": {
+            "main": [
+                "dist/css/bootstrap.css",
+                "dist/css/bootstrap-theme.css",
+                "less/bootstrap.less"
+            ]
+        },
+        "jquery": {
+            "main": []
+        }
+    }
+}
