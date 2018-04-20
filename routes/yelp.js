@@ -1,11 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var config= require("../config/config");
-var apiKey= config.yelp.apiKey;
+const request = require('request-promise-lite');
+const async = require('async')
+
+const config= require("../config/config");
+const apiKey= config.yelp.apiKey;
+const google_apiKey= config.google.apiKey;
+const cseID = config.google.cseID
 
 var mongojs = require('mongojs');
 var db = mongojs(config.db.uri , ['input']);
+
 
 
 const yelp = require('yelp-fusion');
@@ -24,10 +30,10 @@ router.get('/yelp', function(req, res, next){
         res.send(err);
       }
       client.search(input[0])
-
         .then(  response => {
-        res.json(response.jsonBody.businesses).pretty(); }
-      ).catch(e => {
+        res.json(response.jsonBody.businesses);
+        })
+        .catch(e => {
         console.log(e);
       });
     });
