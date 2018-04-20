@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { YelpService } from "./services/yelp-service.service";
 
 @Component({
   selector: 'app-root',

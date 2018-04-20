@@ -1,0 +1,30 @@
+<h1> Search for Restaurants</h1>
+
+<form class = "well" (submit)="handleInput($event)">
+  <div class = "form-group">
+    <div class = "col-md-8">
+      <input type = "text" [(ngModel)] = "term" name = "term" class= "form-control" placeholder="Search" size="100"/>
+    </div>
+
+    <div class="col-md-2">
+      <input type = "text" [(ngModel)] = "location" name = "location" class= "form-control" placeholder="Location" size="50"/>
+    </div>
+
+    <div class="col-sm-2">
+      <input type="button" (click)="handleInput($event)" value="Search" class="btn btn-info">
+    </div>
+    <br><br>
+  </div>
+
+
+</form>
+
+<div *ngFor="let restaurant of restaurants">
+  <div class="col-sm-3">
+    <input type="checkbox">
+  </div>
+  <div class="col-sm-6">
+    {{ restaurant.title }}
+  </div>
+  <br><br>
+</div>
