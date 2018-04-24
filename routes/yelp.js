@@ -92,45 +92,40 @@ const yelpSearch = function(input, cb){
 // Google API call
 var googleSearch = function(restaurants, cb){
   console.log("google starts");
-  var apiKey = google_apiKey;
-  var cseKey = cseID;
-  var Restaurants = restaurants;
-  for (var i = 0; i< Restaurants.length; i++){
+  const apiKey = google_apiKey;
+  const cseKey = cseID;
 
-    var restaurant = Restaurants[i];
-    restaurant['imageURLs'] = [];
+  return Promise.all(Array.from(restaurants).map(function (restaurant) {
 
-    var keyWord = restaurant.name + restaurant.city + restaurant.state;
-    var googleURL = "https://www.googleapis.com/customsearch/v1?key="+ apiKey +
-      "&q="+ keyWord +
-      "&searchType=image" +
-      "&cx=" + cseKey +
-      "&num=7" +
-      "&safe=medium"
-    ;
+      var keyWord = restaurant.name + " " + restaurant.location.city
+        + " " + restaurant.location.state + " food";
 
-    //image URLs of each restaurants to be displayed in the front end
-    var imageURLs = [];
+      var googleURL = "https://www.googleapis.com/customsearch/v1?key=" + apiKey +
+        "&q=" + keyWord +
+        "&searchType=image" +
+        "&cx=" + cseKey +
+        "&num=7" +
+        "&safe=medium"
+      ;
 
-    request
-      .get(googleURL,
-        {
-          json : true, headers: {
-            'User-Agent' : 'thaorell'
+      return request
+        .get(googleURL,
+          {
+            json: true, headers: {
+              'User-Agent': 'thaorell'
+            }
           }
+        )
+        .then(function (response) {
+          restaurant.imageURLs = Array.from(response.items).map(function (item) {
+            return item.link;
+          });
+          return restaurant;
         })
-      .then(function(response){
-        response.items.forEach(function(item){
-          imageURLs.push(item.link)
-        });
-
-        restaurant.imageURLs = imageURLs;
-      })
-      .catch(e => {
-        console.log(e);
-      })
-  }
-  cb(null, Restaurants)
+    })
+  )
+    .then(restaurants2 => cb(null, restaurants2))
+    .catch(cb)
 };
 
 module.exports = router;
