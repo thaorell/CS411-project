@@ -8,8 +8,16 @@ import { YelpService } from "./../services/yelp-service.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  profile: any;
+  constructor(public authService: AuthService) { }
   ngOnInit() {
+    if (this.authService.userProfile) {
+      this.profile = this.authService.userProfile;
+    } else {
+      this.authService.getProfile((err, profile) => {
+        this.profile = profile;
+      });
+    }
   }
 
 }

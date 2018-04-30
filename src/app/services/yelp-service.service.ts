@@ -25,11 +25,7 @@ export class YelpService {
       .map(res => res.json());
   }
 
-  public getRestaurants() {
 
-    return this.http.get('http://localhost:4200/api/yelp/')
-      .map(res => res.json());
-  }
   public new_getRestaurants(term, location) {
     return this.http.get('http://localhost:4200/api/yelp/' + term + '/' + location)
       .map(res => res.json());

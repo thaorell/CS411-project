@@ -22,28 +22,6 @@ router.get('/', function(req, res, next){
   console.log("API page");
 });
 
-router.get('/yelp', function(req, res, next){
-  var lastInput = {};
-  db.input.find({},{term:1, location:1, _id:0})
-    .limit(1).sort({$natural:-1}, function(err, input){
-      if(err){
-        res.send(err);
-      }
-      lastInput = input[0];
-    //console.log(lastInput);
-    async.waterfall([
-      async.constant(input[0]),
-        yelpSearch,
-        googleSearch
-      ],
-      function sendJson(err, restaurants) {
-        console.log("waterfall starting");
-        if (err) res.send(err);
-        res.json(restaurants);
-      })
-
-  });
-});
 
 router.get('/yelp/:term/:location', function(req, res, next){
     var input = {
