@@ -22,8 +22,8 @@
 </form>
 
 <div *ngFor="let restaurant of restaurants">
-  <div class = "row">
-    <div class="col-sm-3" style="font-size: 16px; font-weight: bold">
+  <div class = "row>" style ="font-size: medium">
+    <div class="col-sm-3" style="font-size: 14px; font-weight: bold">
       {{ restaurant.title }}
     </div>
     <div class= "col-sm-1" style="font-size: 14px">
@@ -36,7 +36,7 @@
       {{ restaurant.rating+"/5" }}
     </div>
     <div class="col-sm-2">
-      <select [(ngModel)]="selectedValue" >
+      <select [(ngModel)]="selectedValue">
         <option *ngFor ="let trip of trips" [ngValue]="trip">{{trip.name}} </option>
       </select>
     </div>
@@ -45,7 +45,7 @@
       <input type="button" (click)="addRestaurant($event, restaurant )" value="Add" class="btn btn-info red-background white" size="15px">
     </div>
   </div>
-  <br/>
+  <br/><br/>
 
   <div class = "row>">
           <div class="col-sm-2" *ngFor="let image of restaurant.image_url">
@@ -53,6 +53,6 @@
           </div>
         </div>
 
-  <br/><br/>
+  <br/><br/><br/>
 
 </div>

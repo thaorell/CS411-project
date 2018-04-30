@@ -10,7 +10,7 @@
   <img width="300" src="https://www.graphicsprings.com/filestorage/stencils/413b3cc6442fd186fc50110196040499.png?width=500&height=500">
 </div>
 <div class="container">
-  <app-yelp></app-yelp>
+  <app-yelp *ngIf="authService.isAuthenticated()"></app-yelp>
 </div>
 <footer>
   <label>Created by: Chuong Thao. Powered by Google Inc. and Yelp Inc.</label>
