@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<div class="col-md-2">
+</div>
+<h2> Your trips are displayed below</h2>
+<div class = "form-group">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-2">
+    <input type = "text" [(ngModel)] = "tripName" name = "tripName" class= "form-control" placeholder="Enter New Trip Name" size="50"/>
+  </div>
+  <div class="col-sm-2">
+    <input type="button" (click)="createNew($event)" value="Create New Trip" class="btn btn-info">
+  </div>
+</div>
+<br/><br/>
+<div class="col-md-2">
+</div>
+<div class ="col-md-10">
+<div *ngFor="let trip of Trips">
+  <div class = "row">
+  <div class = "col-md-8">
+    <h3>{{"Name: " + trip.name}}</h3>
+  </div>
+
+  <div class = "col-md-4">
+  <input type="button" (click)="deleteTrip($event, trip)" value="Delete" class="btn btn-danger">
+  </div>
+  </div>
+<br><br>
+  <ul style="list-style-type: none;">
+    <li *ngFor = "let restaurant of trip.restaurants">
+      <div class = "row">
+        <div class = "col-md-2">
+          <button type="button" class="close" aria-label="Close" (click)="deleteRestaurant($event, restaurant, trip)">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="col-md-6">
+          <label style = "font-style: italic; font-size: 18px">{{restaurant.title + ' ' }}</label>
+        </div>
+        <div class = "col-md-4">
+          <label>{{restaurant.location.address1 + ', '+ restaurant.location.city + ' '+ restaurant.location.state}}</label>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+</div>

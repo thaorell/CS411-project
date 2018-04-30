@@ -4,4 +4,6 @@ export class Restaurant{
   coordinates: {};
   url: string;
   image_url: string[];
+  rating: string;
+  price: string;
 }

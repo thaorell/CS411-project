@@ -1,0 +1,29 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Router</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <a routerLink="/">Home</a>
+      </li>
+      <li *ngIf="authService.isAuthenticated()">
+        <a href="/trip">My Trips</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li *ngIf="!authService.isAuthenticated()">
+        <a class="cursor-pointer" (click)="login()">
+          <span class="glyphicon glyphicon-log-in"></span> Login</a>
+      </li>
+      <li *ngIf="authService.isAuthenticated()">
+        <a class="cursor-pointer" routerLink="/profile">
+          <span class="glyphicon glyphicon-user"></span> Profile</a>
+      </li>
+      <li *ngIf="authService.isAuthenticated()">
+        <a class="cursor-pointer" (click)="logout()">
+          <span class="glyphicon glyphicon-log-out"></span> Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>

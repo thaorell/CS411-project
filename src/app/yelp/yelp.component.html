@@ -1,6 +1,7 @@
-<h1> Search for Restaurants</h1>
 
-<form class = "well" (submit)="handleInput($event)">
+<form class = "well" (submit)="handleInput($event)" *ngIf="auth.isAuthenticated()">
+  <h1> Search for Restaurants</h1>
+
   <div class = "form-group">
     <div class = "col-md-8">
       <input type = "text" [(ngModel)] = "term" name = "term" class= "form-control" placeholder="Search" size="100"/>
@@ -13,6 +14,7 @@
     <div class="col-sm-2">
       <input type="button" (click)="handleInput($event)" value="Search" class="btn btn-info">
     </div>
+
     <br><br>
   </div>
 
@@ -20,11 +22,37 @@
 </form>
 
 <div *ngFor="let restaurant of restaurants">
-  <div class="col-sm-3">
-    <input type="checkbox">
+  <div class = "row>">
+    <div class="col-sm-3" style="font-size: 14px">
+      {{ restaurant.title }}
+    </div>
+    <div class= "col-sm-1" style="font-size: 14px">
+      <a href= {{restaurant.url}}> Yelp Link </a>
+    </div>
+    <div class="col-sm-4" style="font-size: 14px">
+      {{ restaurant.location.address1 + ", " + restaurant.location.city + " " + restaurant.location.state }}
+    </div>
+    <div class="col-sm-1" style="font-size: 14px">
+      {{ restaurant.rating+"/5" }}
+    </div>
+    <div class="col-sm-2">
+      <select [(ngModel)]="selectedValue">
+        <option *ngFor ="let trip of trips" [ngValue]="trip">{{trip.name}} </option>
+      </select>
+    </div>
+    <div class="col-sm-1">
+      &nbsp;
+      <input type="button" (click)="addRestaurant($event, restaurant )" value="Add" class="btn btn-info red-background white" size="15px">
+    </div>
   </div>
-  <div class="col-sm-6">
-    {{ restaurant.title }}
-  </div>
-  <br><br>
+  <br/><br/>
+
+  <div class = "row>">
+          <div class="col-sm-2" *ngFor="let image of restaurant.image_url">
+            <img src = {{image}} height="120px">
+          </div>
+        </div>
+
+  <br/><br/>
+
 </div>

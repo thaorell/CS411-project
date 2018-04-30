@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 //var logger = require('logger');
 var index = require('./routes/index');
 var yelp = require('./routes/yelp');
+var trip = require('./routes/trip');
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', index);
 app.use('/api', yelp);
+app.use('/api/trip', trip);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

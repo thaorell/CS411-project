@@ -7,7 +7,7 @@ const async = require('async');
 const config= require("../config/config");
 
 var mongojs = require('mongojs');
-var db = mongojs(config.db.uri , ['input']);
+var db = mongojs(config.db.uri , ['input','search']);
 
 const yelp = require('yelp-fusion');
 
@@ -15,26 +15,14 @@ const apiKey= config.yelp.apiKey;
 const google_apiKey= config.google.apiKey;
 const cseID = config.google.cseID;
 
+var redisClient = require('redis').createClient;
+var redis = redisClient(6379, 'localhost');
 
 router.get('/', function(req, res, next){
   console.log("API page");
 });
 
 router.get('/yelp', function(req, res, next){
-    // const client = yelp.client(apiKey);
-  // db.input.find({},{term:1, location:1, _id:0})
-  //  .limit(1).sort({$natural:-1}, function(err, input){
-  //   if(err){
-  //     res.send(err);
-  //   }
-  //   client.search(input[0])
-  //     .then(  response => {
-  //     res.json(response.jsonBody.businesses);
-  //     })
-  //     .catch(e => {
-  //     console.log(e);
-  //   });
-  // });
   var lastInput = {};
   db.input.find({},{term:1, location:1, _id:0})
     .limit(1).sort({$natural:-1}, function(err, input){
@@ -53,9 +41,38 @@ router.get('/yelp', function(req, res, next){
         if (err) res.send(err);
         res.json(restaurants);
       })
+
   });
 });
 
+router.get('/yelp/:term/:location', function(req, res, next){
+    var input = {
+      term: req.params.term,
+      location: req.params.location
+    }
+    db.search.findOne({input: input}, function(err, response){
+      console.log(input);
+      if (err) callback(null);
+      else if (response)
+        res.json(response.restaurants);
+      else {
+        async.waterfall([
+            async.constant(input),
+            yelpSearch,
+            googleSearch
+          ],
+          function sendJson(err, restaurants) {
+            console.log("waterfall starting");
+            if (err) res.send(err);
+            res.json(restaurants);
+            db.search.save({
+              input: input,
+              restaurants: restaurants
+            })
+          })
+      }
+  })
+});
 
 router.get('/yelp/searches/', function(req, res, next){
   db.input.find(function(err, input){
@@ -97,15 +114,16 @@ var googleSearch = function(restaurants, cb){
 
   return Promise.all(Array.from(restaurants).map(function (restaurant) {
 
-      var keyWord = restaurant.name + " " + restaurant.location.city
+      var keyWord = restaurant.name + " " + restaurant.location.address1 + restaurant.location.city
         + " " + restaurant.location.state + " food";
 
       var googleURL = "https://www.googleapis.com/customsearch/v1?key=" + apiKey +
         "&q=" + keyWord +
         "&searchType=image" +
         "&cx=" + cseKey +
-        "&num=7" +
-        "&safe=medium"
+        "&num=6" +
+        "&safe=medium"+
+        "&fileType=.jpg"
       ;
 
       return request

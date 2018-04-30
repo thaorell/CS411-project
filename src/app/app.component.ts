@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { YelpService } from "./services/yelp-service.service";
 
 @Component({
   selector: 'app-root',
@@ -7,5 +6,4 @@ import { YelpService } from "./services/yelp-service.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
 }

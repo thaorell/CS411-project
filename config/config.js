@@ -1,3 +1,5 @@
+// import * as auth0 from "@types/auth0-js/index";
+
 /**
  * This is the configuration file as specified in the project specifications,
  * all constants are stored here
@@ -10,7 +12,7 @@ var config = {
 
   db: {
     uri: "mongodb://charles:charles@ds149309.mlab.com:49309/router_users",
-    collections: ['users','input']
+    collections: ['users','input','trips']
   },
   // Yelp Credentials
   yelp: {
@@ -27,7 +29,16 @@ var config = {
     clientID: process.env.TWITTER_KEY || 'AloBEOP54stQzLjgu9bk43WPb',
     clientSecret: process.env.TWITTER_SECRET || 's7adCF1qsmjcpf3vO6FMogdvxfqCYg2NQY4Fql3KaMY7DQq3kN',
     callbackURL: '/api/auth/twitter/callback'
+  },
+  auth0: {
+    clientID: 'Sy1WHN006vF1rL6Iojxa8fDv50M3Fh45',
+    domain: 'encapsulate.auth0.com',
+    responseType: 'token id_token',
+    audience: 'https://encapsulate.auth0.com/userinfo',
+    redirectUri: 'http://localhost:4200/callback',
+    scope: 'openid profile'
   }
 };
 
 module.exports= config;
+
