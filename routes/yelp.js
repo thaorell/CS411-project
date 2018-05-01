@@ -100,7 +100,6 @@ var googleSearch = function(restaurants, cb){
         "&searchType=image" +
         "&cx=" + cseKey +
         "&num=6" +
-        "&safe=medium"+
         "&fileType=.jpg"
       ;
 
