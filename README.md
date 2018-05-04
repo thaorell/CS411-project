@@ -6,18 +6,18 @@ Welcome to CS411- group 4's repository. We developed a web application for searc
 |Shizhan Qi       | Computer Science     | 2019             |
 |Jay Park         | Computer Science     | 2018             |
 
-##Set up environment
+## Set up environment
 
 To set up our application, you will need API keys for Yelp and Google Custom Search. You can easily register for these APIs https://www.yelp.com/developers for Yelp and https://developers.google.com/custom-search/docs/tutorial/creatingcse for Google Custom Search. For authentication, we used [Auth0](https://auth0.com). 
 
 After getting your API credentials, open a terminal and follow these steps:
 
-#1. Clone the application
+# 1. Clone the application
 ```
 git clone https://github.com/thaorell/router
 ```
 
-#2. Set up config
+# 2. Set up config
 ```
 cd router
 mkdir config
@@ -63,7 +63,7 @@ module.exports= config;
 ```
 Remember to add http://localhost:4200/callback to the list of allowed callback in Auth0 settings.
 
-#3. Install and deploy
+# 3. Install and deploy
 ```
 npm install
 npm install nodemon -g
