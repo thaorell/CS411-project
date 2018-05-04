@@ -69,3 +69,4 @@ npm install
 npm install nodemon -g
 npm start
 ```
+In your Internet browser, go to http://localhost:4200/
